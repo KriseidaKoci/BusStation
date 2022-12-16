@@ -2,7 +2,7 @@ package org.example.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="roi_bus")
+@Table(name="roi_bus") // percakton emrin e tabeles ne databaze, mund ta vendosim mund edhe mos ta vendosim, nese nuk e vendosim behet bus
 public class Bus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

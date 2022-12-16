@@ -2,9 +2,9 @@ package org.example.repositories;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class Repository <T> {
+public class Repository <T> { // klasa repository ka vetem konstruktor me parametra
 
-    private final Session session;
+    final Session session;
     private final Class<? extends T> aClass;
 
     public Repository(Session session, Class<? extends T> aClass) {
@@ -18,14 +18,14 @@ public class Repository <T> {
     }
 
     public T save(T obj) {
-        Transaction transaction = null;
+        Transaction transaction = null;// per aq kohe sa nuk  kemi asnje transaksion ne progres
         try {
-            transaction = session.beginTransaction();
-            session.persist(obj); // mundohemi ta ruajme ne databaze
-            transaction.commit();
+            transaction = session.beginTransaction();// fillojme nje transaksion te ri
+            session.persist(obj); // mundohemi ta ruajme objektin ne databaze
+            transaction.commit();// e ruajme me sukses
             return obj;
         } catch (Exception e) {
-            if (transaction != null)
+            if (transaction != null) //nqs transaksioni nuk eshte bosh, pra po kryhet dicja tjeter bejm rollback
           e.printStackTrace();
           transaction.rollback();
         }
@@ -34,6 +34,9 @@ public class Repository <T> {
         return null;
     }
     public T update (T obj){
+        // update eshte identike si save por duhet te kontrolloje qe id qe po updaton duhet te ekzistoje,
+        // perndryshe e ruan objektin me nje id te autogjeneruar
+
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();

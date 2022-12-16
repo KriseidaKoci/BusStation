@@ -74,10 +74,8 @@ public class Itineraries {
     private String destination;
     @ManyToMany()
     @JoinTable (name="bus itineraries ",
-    joinColumns = {
-            @JoinColumn(name="bus")},
-            inverseJoinColumns = {
-            @JoinColumn(name="itinerary")})
+    joinColumns = {@JoinColumn(name="bus")},
+   inverseJoinColumns = {@JoinColumn(name="itinerary")})
 
     List<Bus> buses;
 

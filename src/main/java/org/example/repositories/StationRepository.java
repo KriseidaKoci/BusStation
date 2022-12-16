@@ -5,7 +5,8 @@ import org.hibernate.Session;
 
 public class StationRepository extends Repository<Station> {
 
-    public StationRepository (Session session){
+    public StationRepository (Session session) {
         super(session, Station.class);
+
     }
 }
